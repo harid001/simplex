@@ -304,11 +304,7 @@ var changeColor = true;
              }
 
              var l = new Language();
-             console.log($('#languages').val());
-             console.log(newWord);
-             newWord = $(l.convertLang(newWord.trim(),$('#languages').val())).find('Text').text();
-
-             word = newWord + " ";
+             word  = $(l.convertLang(newWord,$('#languages').val())).find('Text').text() + " ";
 
              
 
