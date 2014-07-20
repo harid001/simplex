@@ -1,27 +1,28 @@
-
 function getScores(word){
 
-	var data;
 	var scores = {};
 
-	$.ajax({
-		url : 'http://api.wordnik.com:80/v4/word.json/' + word + '/relatedWords/?useCanonical=true&relationshipTypes=synonym&limitPerRelationshipType=5&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5',
-		success : function(result) { data = result; },
-		async : false
-	});
-
-	//console.log(data);
-
-	if(data.length == 0){
+	// if word is in top 100, don't do call, immediately return scores
+	var ignore = ['the','be','to','of','and','a','in','that','have','I','it','for','not','on','with','he','as','you','do','at','this','but','his','by','from','they','we','say','her','she','or','an','will','my','one','all','would','there','their','what','so','up','out','if','about','who','get','which','go','me','when','make','can','like','time','no','just','him','know','take','people','into','year','your','could','them','see','other','than','then','now','look','only','come','its','over','think','also','back','after','use','two','how','our','work','first','well','way','even','new','want','because','any','these','give','day','most','us'];
+	if(ignore.indexOf(word) > -1){
 		scores[word] = calcWordUsage(word);
 		return scores;
 	}
 
-	var syn = data[0]['words'] + ',' + word;
+	var data;
+	
 
-	for(var i = 0; i < syn.split(',').length; i++){
-		var w = syn.split(',')[i].trim();
-		scores[w] = calcWordUsage(w);
+	$.ajax({
+		url : 'http://www.stands4.com/services/v2/syno.php?uid=3481&tokenid=Q52WeeduzI3sCbad&word=' + word,
+		success : function(result) { data = result; },
+		async : false
+	});
+
+	var sys = $(data).find('synonyms').first().text().split(',');
+	sys.push(word);
+
+	for(var i = 0; i < sys.length; i++){
+		scores[sys[i].trim()] = calcWordUsage(sys[i].trim());
 	}
 
 	return scores;	
@@ -31,7 +32,6 @@ function Dumbify(){ }
 Dumbify.prototype.getDumberWord = function(word) {
 	
 	var scores = getScores(word);
-	//console.log(scores);
 	var newScores = {};
 
 	for(var i = 0; i < Object.keys(scores).length; i++){
@@ -48,7 +48,7 @@ Dumbify.prototype.getDumberWord = function(word) {
 
 Dumbify.prototype.getSmarterWord = function(word) {
 	var scores = getScores(word);
-	//console.log(scores);
+	console.log(scores);
 	var newScores = {};
 
 	for(var i = 0; i < Object.keys(scores).length; i++){
