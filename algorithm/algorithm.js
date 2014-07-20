@@ -34,7 +34,6 @@ Dumbify.prototype.getDumberWord = function(word) {
 	var newScores = {};
 
 	for(var i = 0; i < Object.keys(scores).length; i++){
-		// change sign ('>=') to make into smartify
 		if(scores[Object.keys(scores)[i]] >= scores[word]){
 			newScores[Object.keys(scores)[i]] = scores[Object.keys(scores)[i]];
 		}
@@ -44,6 +43,21 @@ Dumbify.prototype.getDumberWord = function(word) {
 	return Object.keys(newScores)[random];
 	
 
+};
+
+Dumbify.prototype.getSmarterWord = function(word) {
+	var scores = getScores(word);
+	//console.log(scores);
+	var newScores = {};
+
+	for(var i = 0; i < Object.keys(scores).length; i++){
+		if(scores[Object.keys(scores)[i]] <= scores[word]){
+			newScores[Object.keys(scores)[i]] = scores[Object.keys(scores)[i]];
+		}
+	}
+
+	var random = Math.floor(Math.random() * Object.keys(newScores).length);
+	return Object.keys(newScores)[random];
 };
 
 
