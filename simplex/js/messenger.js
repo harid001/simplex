@@ -296,11 +296,18 @@ var changeColor = true;
              if($('#simplify').prop('checked')){
                 newWord = alg.getDumberWord(word);
              }
-             if($('#complexify').prop('checked')){
+             else if($('#complexify').prop('checked')){
                 newWord = alg.getSmarterWord(word);
              }
+             else{
+              newWord = word;
+             }
 
-             
+             var l = new Language();
+             console.log($('#languages').val());
+             console.log(newWord);
+             newWord = $(l.convertLang(newWord.trim(),$('#languages').val())).find('Text').text();
+
              word = newWord + " ";
 
              
@@ -401,7 +408,6 @@ var changeColor = true;
         $('#simplify').checkboxradio('enable');
       }
   }); 
-
 
 
   // This code essentially does what routing does in Backbone.js.
