@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html manifest="messenger.appcache">
+  <head>
+    <title>Simplex</title>
+
+    <meta name=viewport content=width=device-width>
+    <meta name=viewport content=initial-scale=1.0>
+    <meta name=viewport content=user-scalable=no>
+
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+
+    <link rel=apple-touch-icon href=icon.png>
+    <link rel=apple-touch-startup-image href=startup.png>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,700,400italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/jquery.css" />
+    <link rel="stylesheet" href="css/screen.css" type="text/stylesheet" />
+
+    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz|Open+Sans' rel='stylesheet' type='text/css'>
+
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+    <script src="http://cdn.pubnub.com/pubnub-3.5.1.js"></script>
+    <script src="js/messenger.js"></script>
+    <script src="../algorithm/algorithm.js"></script>
+  </head>
+  <body>
+    <!-- Home Page -->
+    <div data-role="page" id="homePage" data-theme="c" class="type-home">
+
+      <div data-role="content" id="enterNamePage">
+        <div class="logo">
+          <h3> <img id="logo" src="img/logo.png"></img> </h3>
+        </div>
+        <input type="text" name="name" id="username" placeholder="Display Name" />
+        <a href="#" id="startChatButton" data-role="button"> Chat Rooms</a>
+      </div><!-- /content -->
+
+    </div><!-- /page -->
+
+    <!-- Chat List Page -->
+    <div data-role="page" id="chatListPage" data-theme="c" class="type-chat-list">
+      <div data-role="header">
+        <h1 id="currentChatsText">Current Chats</h1>
+      </div>
+
+      <div data-role="content">
+        <input type="text" name="name" id="chatRoomName" placeholder="Chat Room Name" />
+        <a href="#" id="newChatButton" data-role="button">Join New Chat</a>
+
+        <br />
+
+        <ul data-role="listview" data-split-icon="delete" data-split-theme="c" id="chatList">
+          <!-- <li><span class="username">User123:</span>This is my message.</li> -->
+
+        </ul>
+      </div>
+    </div>
+
+    <!-- Chat Page -->
+    <div data-role="page" id="chatPage" data-theme="c" class="type-interior">
+
+      <div data-role="content">
+        <div class="content-primary">
+          <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1>Simplex</h1>
+          </div><!-- /header -->
+
+          <div data-role="content">
+            <ul data-role="listview" id="messageList">
+              <!-- <li><span class="username">User123:</span>This is my message.</li> -->
+            </ul>
+          </div>
+
+          <div data-role="footer" data-theme="c">
+            <textarea id="messageContent"></textarea>
+              <div class="ui-grid-c">
+                <div class="ui-block-a"><a href="#" id="sendMessageButton" data-role="button">Send Message</a></div>
+                <div class="ui-block-b"><a href="#" id="backButton" data-rel="back" data-role="button">Chat Rooms</a></div>
+                <div class="ui-block-c">
+                  <label><input type="checkbox" name="checkbox-0" id="simplify">Simplify</label>
+                </div>
+                 <div class="ui-block-d">
+                    <label><input type="checkbox" name="checkbox-0" id="complexify">Complexify</label>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="content-secondary">
+          <ul data-role="listview" id="userList" data-theme="c">
+        
+          </ul>
+        </div>
+      </div><!-- /content -->
+
+    </div><!-- /page -->
+
+    <div data-role="dialog" id="delete">
+      <div data-role="content">
+        <h3>Unsubscribe From This Channel?</h3>
+        <a href="#" data-role="button" id="deleteButton">Delete</a>
+        <a href="#" data-role="button" data-rel="back">Cancel</a>
+      </div>
+    </div>
+
+    <div data-role="page" id="userListPage" data-theme="c">
+      <div data-role="header">
+        <h1>Pub Messenger</h1>
+      </div>
+
+      <div data-role="content">
+
+      </div>
+    </div>
+  </body>
+</html>
