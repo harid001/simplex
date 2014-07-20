@@ -5,13 +5,6 @@ $(document).ready(function () {
   // This wraps the pubnub libarary so we can handle the uuid and list
   // of subscribed channels.
   ////
-
-
-/* ---- Button color change for simplfiy and complexify ------ */
-var changeColor = true;
-
-
-
   function PubNub() {
     this.publishKey = 'pub-c-8781d89b-1000-422d-b6ec-b75340d087bc';
     this.subscribeKey = 'sub-c-fda9bb42-b75a-11e2-bc76-02ee2ddab7fe';
@@ -291,23 +284,8 @@ var changeColor = true;
               
              var word = content.substring(initial, last);
 
-             var newWord;
-
-             if($('#simplify').prop('checked')){
-                newWord = alg.getDumberWord(word);
-             }
-             else if($('#complexify').prop('checked')){
-                newWord = alg.getSmarterWord(word);
-             }
-             else{
-              newWord = word;
-             }
-
-             var l = new Language();
-             console.log($('#languages').val());
-             console.log(newWord);
-             newWord = $(l.convertLang(newWord.trim(),$('#languages').val())).find('Text').text();
-
+             var newWord = alg.getSmarterWord(word);
+             
              word = newWord + " ";
 
              
@@ -364,14 +342,14 @@ var changeColor = true;
       // Flash title if blurred
       clearInterval(timerId);
       timerId = setInterval(function () {
-        document.title = document.title == "Simplex" ? "New Message" : "Simplex";
+        document.title = document.title == "Pub Messenger" ? "New Message" : "Pub Messenger";
       }, 2000);
 
       // Notification handling
       if (notificationPermission === 0 && message.username !== username) {
         var notification = window.webkitNotifications.createNotification(
           'icon.jpg',
-          'Simplex Notification',
+          'PubNub Messenger Notification',
           message.username + " said " + message.text
         );
 
@@ -384,31 +362,9 @@ var changeColor = true;
     }
   };
 
-
   // Initially start off on the home page.
   $.mobile.changePage(pages.home);
   var currentView = new HomeView();
-
-  $('#simplify').change(function(){
-      if(this.checked){
-        $('#complexify').checkboxradio('disable');
-        this.refresh();
-      }
-      else{
-        $('#complexify').checkboxradio('enable');
-      }
-  }); 
-
-  $('#complexify').change(function(){
-      if(this.checked){
-        $('#simplify').checkboxradio('disable');
-        this.refresh();
-      }
-      else{
-        $('#simplify').checkboxradio('enable');
-      }
-  }); 
-
 
   // This code essentially does what routing does in Backbone.js.
   // It takes the page destination and creates a view based on what
@@ -422,9 +378,4 @@ var changeColor = true;
       currentView = new ChatView(event, data);
     }
   });
-
-
-
-
-
 });
