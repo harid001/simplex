@@ -52,7 +52,7 @@ li.message:nth-child(even) {
 }
 
 .type-home .ui-content {
-  max-width: 500px;
+  max-width: 300px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -116,7 +116,7 @@ p.intro strong {
 
 .content-primary .ui-footer textarea {
   margin: 5px auto;
-  width: 95%;
+  width: 97%;
 }
 
 .content-primary .ui-footer .ui-grid-a {
@@ -201,7 +201,7 @@ p.intro strong {
     padding: 0;
   }
   .content-primary {
-    width: 80%;
+    width: 60%;
     float: right;
     margin: 0;
     padding: 0;
@@ -291,15 +291,17 @@ p.intro strong {
     padding: 0;
   }
   .content-primary {
-    width: 80%;
+    width: 60%;
     /*margin-right: 5%;
     padding-right: 3%;*/
   }
   .type-interior .content-primary {
-    width: 80%;
+    width: 60%;
+    margin-right: 20%;
   }
   .type-interior .content-primary .ui-footer {
-    width: 80%;
+    width: 60%;
+    margin-right: 20%;
   }
 }
 
@@ -347,10 +349,11 @@ dl dd ul li { border: none; }
 }
 
 #enterNamePage {
-  background-color: rgba(255,255,255,0);
+  background-color: rgba(255,255,255,0.6);
   border-radius: 6px;
   text-align: center;
   margin: 10% auto; 
+  border: 3px solid black;
 }
 
 #currentChatsText {
@@ -363,21 +366,7 @@ dl dd ul li { border: none; }
 }
 
 #logo {
-  -webkit-transition: opacity 500ms ease;
-    -moz-transition: opacity 500ms ease;
-    -o-transition: opacity 500ms ease;
-    transition: opacity 500ms ease;
   width: 100%;
-  opacity: 1;
-}
-
-#logo:hover {
-  -webkit-transition: opacity 500ms ease;
-    -moz-transition: opacity 500ms ease;
-    -o-transition: opacity 500ms ease;
-    transition: opacity 500ms ease;
-  width: 100%;
-  opacity: 0.7;
 }
 
 #startChatButton,
@@ -385,8 +374,6 @@ dl dd ul li { border: none; }
   border-radius: 0px;
   background-color: rgba(0,0,0,0) !important;
 }
-
-.ui-field-contain{width:100%;}
 
 #chatPage {
   background-color: red !important;
