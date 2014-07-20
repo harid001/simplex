@@ -253,8 +253,6 @@ $(document).ready(function () {
   var initial = 0;
   var last = 0;
 
-  var alg = new Dumbify();
-
   var messageContentTextBox = document.getElementById("messageContent");
 
   var addNewWord = true;
@@ -280,13 +278,11 @@ $(document).ready(function () {
              var front = "";
 
              if(initial != 0)
-                front = content.substring(0, initial);
+                front = content.substring(0, initial) + " ";
               
              var word = content.substring(initial, last);
-
-             var newWord = alg.getSmarterWord(word);
              
-             word = newWord + " ";
+             word = "bad" + " ";
 
              
 
@@ -297,6 +293,16 @@ $(document).ready(function () {
              addNewWord = false;
           }
            //word dumify
+
+
+
+
+
+
+
+
+
+
 /*
           var content = document.getElementById("messageContent").value;
           last = content.length - 1;
