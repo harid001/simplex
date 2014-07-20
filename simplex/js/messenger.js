@@ -364,14 +364,14 @@ var changeColor = true;
       // Flash title if blurred
       clearInterval(timerId);
       timerId = setInterval(function () {
-        document.title = document.title == "Simplex" ? "New Message" : "Simplex";
+        document.title = document.title == "Pub Messenger" ? "New Message" : "Pub Messenger";
       }, 2000);
 
       // Notification handling
       if (notificationPermission === 0 && message.username !== username) {
         var notification = window.webkitNotifications.createNotification(
           'icon.jpg',
-          'Simplex Notification',
+          'PubNub Messenger Notification',
           message.username + " said " + message.text
         );
 
