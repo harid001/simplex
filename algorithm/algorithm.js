@@ -9,6 +9,13 @@ function getScores(word){
 		async : false
 	});
 
+	//console.log(data);
+
+	if(data.length == 0){
+		scores[word] = calcWordUsage(word);
+		return scores;
+	}
+
 	var syn = data[0]['words'] + ',' + word;
 
 	for(var i = 0; i < syn.split(',').length; i++){
@@ -23,6 +30,7 @@ function Dumbify(){ }
 Dumbify.prototype.getDumberWord = function(word) {
 	
 	var scores = getScores(word);
+	//console.log(scores);
 	var newScores = {};
 
 	for(var i = 0; i < Object.keys(scores).length; i++){
