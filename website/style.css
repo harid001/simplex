@@ -176,9 +176,9 @@ body {
     -moz-transition: opacity 500ms ease;
     -o-transition: opacity 500ms ease;
     transition: opacity 500ms ease;
-	width: 20%;
-	margin-left: 5%;
-	margin-right: 5%;
+	width: 15%;
+	margin-left: 2%;
+	margin-right: 2%;
 	opacity: 0.4;
 }
 
@@ -188,9 +188,9 @@ body {
     -moz-transition: opacity 500ms ease;
     -o-transition: opacity 500ms ease;
     transition: opacity 500ms ease;
-	width: 20%;
-	margin-left: 5%;
-	margin-right: 5%;
+	width: 15%;
+	margin-left: 2%;
+	margin-right: 2%;
 	opacity: 1;
 }
 
