@@ -304,11 +304,7 @@ var changeColor = true;
              }
 
              var l = new Language();
-             console.log($('#languages').val());
-             console.log(newWord);
-             newWord = $(l.convertLang(newWord.trim(),$('#languages').val())).find('Text').text();
-
-             word = newWord + " ";
+             word  = $(l.convertLang(newWord,$('#languages').val())).find('Text').text() + " ";
 
              
 
@@ -364,14 +360,14 @@ var changeColor = true;
       // Flash title if blurred
       clearInterval(timerId);
       timerId = setInterval(function () {
-        document.title = document.title == "Pub Messenger" ? "New Message" : "Pub Messenger";
+        document.title = document.title == "Simplex" ? "New Message" : "Simplex";
       }, 2000);
 
       // Notification handling
       if (notificationPermission === 0 && message.username !== username) {
         var notification = window.webkitNotifications.createNotification(
           'icon.jpg',
-          'PubNub Messenger Notification',
+          'Simplex Notification',
           message.username + " said " + message.text
         );
 
