@@ -250,10 +250,88 @@ $(document).ready(function () {
     });
   };
 
+  var initial = 0;
+  var last = 0;
+
+  var messageContentTextBox = document.getElementById("messageContent");
+
+  var addNewWord = true;
+
+  $('body').keyup(function(e){
+       if(e.keyCode != 32){
+          // backspace
+          addNewWord = true;
+       }
+       if(e.keyCode == 8 && messageContentTextBox.value.length == 0){
+          initial = 0;
+          last = 0;
+          addNewWord = true;
+       }
+       if(e.keyCode == 32){
+           // spacebar
+           if(addNewWord){
+             var newString = "";
+
+             var content = messageContentTextBox.value;
+
+             last = content.length - 1;
+             var front = "";
+
+             if(initial != 0)
+                front = content.substring(0, initial) + " ";
+              
+             var word = content.substring(initial, last);
+             
+             word = "bad" + " ";
+
+             
+
+             messageContentTextBox.value = front + word;
+
+             initial = messageContentTextBox.value.length;
+
+             addNewWord = false;
+          }
+           //word dumify
+
+
+
+
+
+
+
+
+
+
+/*
+          var content = document.getElementById("messageContent").value;
+          last = content.length - 1;
+
+          alert(initial + " " + last);
+          var wordBefore = content.substring(initial, last);
+          var replacment = "content" + " ";
+
+          content = content.replace(wordBefore, "bad");
+
+          alert(content);
+
+          document.getElementById("messageContent").value = content + replacment;
+
+          initial = content.length + replacment.length + 1;
+          //alert(initial);*/
+
+
+       }
+  });
+
+
   // This handles appending new messages to our chat list.
   ChatView.prototype.handleMessage = function (message, animate) {
     if (animate !== false) animate = true;
 
+    //var word = new Dumbify();
+    //var text = word.getDumberWord(message.text);
+    
     var messageEl = $("<li class='message'>"
         + "<span class='username'>" + message.username + "</span>"
         + message.text
