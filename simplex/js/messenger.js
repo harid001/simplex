@@ -5,6 +5,13 @@ $(document).ready(function () {
   // This wraps the pubnub libarary so we can handle the uuid and list
   // of subscribed channels.
   ////
+
+
+/* ---- Button color change for simplfiy and complexify ------ */
+var changeColor = true;
+
+
+
   function PubNub() {
     this.publishKey = 'pub-c-8781d89b-1000-422d-b6ec-b75340d087bc';
     this.subscribeKey = 'sub-c-fda9bb42-b75a-11e2-bc76-02ee2ddab7fe';
@@ -284,7 +291,15 @@ $(document).ready(function () {
               
              var word = content.substring(initial, last);
 
-             var newWord = alg.getSmarterWord(word);
+             var newWord;
+
+             if($('#simplify').prop('checked')){
+                newWord = alg.getDumberWord(word);
+             }
+             if($('#complexify').prop('checked')){
+                newWord = alg.getSmarterWord(word);
+             }
+
              
              word = newWord + " ";
 
@@ -362,9 +377,32 @@ $(document).ready(function () {
     }
   };
 
+
   // Initially start off on the home page.
   $.mobile.changePage(pages.home);
   var currentView = new HomeView();
+
+  $('#simplify').change(function(){
+      if(this.checked){
+        $('#complexify').checkboxradio('disable');
+        this.refresh();
+      }
+      else{
+        $('#complexify').checkboxradio('enable');
+      }
+  }); 
+
+  $('#complexify').change(function(){
+      if(this.checked){
+        $('#simplify').checkboxradio('disable');
+        this.refresh();
+      }
+      else{
+        $('#simplify').checkboxradio('enable');
+      }
+  }); 
+
+
 
   // This code essentially does what routing does in Backbone.js.
   // It takes the page destination and creates a view based on what
@@ -378,4 +416,9 @@ $(document).ready(function () {
       currentView = new ChatView(event, data);
     }
   });
+
+
+
+
+
 });
