@@ -5,6 +5,13 @@ $(document).ready(function () {
   // This wraps the pubnub libarary so we can handle the uuid and list
   // of subscribed channels.
   ////
+
+
+/* ---- Button color change for simplfiy and complexify ------ */
+var changeColor = true;
+
+
+
   function PubNub() {
     this.publishKey = 'pub-c-8781d89b-1000-422d-b6ec-b75340d087bc';
     this.subscribeKey = 'sub-c-fda9bb42-b75a-11e2-bc76-02ee2ddab7fe';
@@ -253,6 +260,8 @@ $(document).ready(function () {
   var initial = 0;
   var last = 0;
 
+  var alg = new Dumbify();
+
   var messageContentTextBox = document.getElementById("messageContent");
 
   var addNewWord = true;
@@ -278,11 +287,21 @@ $(document).ready(function () {
              var front = "";
 
              if(initial != 0)
-                front = content.substring(0, initial) + " ";
+                front = content.substring(0, initial);
               
              var word = content.substring(initial, last);
+
+             var newWord;
+
+             if($('#simplify').prop('checked')){
+                newWord = alg.getDumberWord(word);
+             }
+             if($('#complexify').prop('checked')){
+                newWord = alg.getSmarterWord(word);
+             }
+
              
-             word = "bad" + " ";
+             word = newWord + " ";
 
              
 
@@ -293,16 +312,6 @@ $(document).ready(function () {
              addNewWord = false;
           }
            //word dumify
-
-
-
-
-
-
-
-
-
-
 /*
           var content = document.getElementById("messageContent").value;
           last = content.length - 1;
@@ -368,9 +377,32 @@ $(document).ready(function () {
     }
   };
 
+
   // Initially start off on the home page.
   $.mobile.changePage(pages.home);
   var currentView = new HomeView();
+
+  $('#simplify').change(function(){
+      if(this.checked){
+        $('#complexify').checkboxradio('disable');
+        this.refresh();
+      }
+      else{
+        $('#complexify').checkboxradio('enable');
+      }
+  }); 
+
+  $('#complexify').change(function(){
+      if(this.checked){
+        $('#simplify').checkboxradio('disable');
+        this.refresh();
+      }
+      else{
+        $('#simplify').checkboxradio('enable');
+      }
+  }); 
+
+
 
   // This code essentially does what routing does in Backbone.js.
   // It takes the page destination and creates a view based on what
@@ -384,4 +416,9 @@ $(document).ready(function () {
       currentView = new ChatView(event, data);
     }
   });
+
+
+
+
+
 });
