@@ -1,45 +1,54 @@
-function calcWordUsage(word){
-
-	var data;
-
-	$.ajax({
-		url : 'http://api.wordnik.com:80/v4/word.json/' + word + '/frequency' + "?useCanonical=false&startYear=1990&endYear=2012&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5",
-		success : function(result) { data = result; },
-		async : false
-	});
-
-	return data['totalCount'];
-}
-
 function getScores(word){
 
 	var data;
 	var scores = {};
 
 	$.ajax({
-		url : 'http://www.dictionaryapi.com/api/v1/references/thesaurus/xml/' + word + '?key=e4a0fb4e-d5d2-49ab-852a-c797139a93a6',
+		url : 'http://api.wordnik.com:80/v4/word.json/' + word + '/relatedWords/?useCanonical=true&relationshipTypes=synonym&limitPerRelationshipType=5&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5',
 		success : function(result) { data = result; },
 		async : false
 	});
 
-	var syn = $(data).find('syn').text();
+	var syn = data[0]['words'] + ',' + word;
 
 	for(var i = 0; i < syn.split(',').length; i++){
-		scores[syn.split(',')[i].trim()] = calcWordUsage(syn.split(',')[i].trim());
+		var w = syn.split(',')[i].trim();
+		scores[w] = calcWordUsage(w);
 	}
 
 	return scores;	
 }
 
-var word = 'inundate';
+function Dumbify(){ }
+Dumbify.prototype.getDumberWord = function(word) {
+	
+	var scores = getScores(word);
+	var newScores = {};
 
-var scores = getScores('inundate');
-var newScores = {};
-
-for(var i = 0; i < Object.keys(scores).length; i++){
-	if(scores[Object.keys(scores)[i]] > scores['inundate']){
-		newScores[Object.keys(scores)[i]] = scores[Object.keys(scores)[i]];
+	for(var i = 0; i < Object.keys(scores).length; i++){
+		// change sign ('>=') to make into smartify
+		if(scores[Object.keys(scores)[i]] >= scores[word]){
+			newScores[Object.keys(scores)[i]] = scores[Object.keys(scores)[i]];
+		}
 	}
+
+	var random = Math.floor(Math.random() * Object.keys(newScores).length);
+	return Object.keys(newScores)[random];
+	
+
+};
+
+
+function calcWordUsage(word){
+
+	var value;
+
+	$.ajax({
+		url: 'http://weblm.research.microsoft.com/weblm/rest.svc/bing-body/apr10/1/jp?u=a15ec3fe-4a31-4ba8-8e59-1b0550d048ba&p=' + word + '&format=json',
+		success : function(data){ value = data; },
+		async : false
+	});
+
+	return value;
+
 }
-
-
