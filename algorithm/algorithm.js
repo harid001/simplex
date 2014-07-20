@@ -1,3 +1,4 @@
+
 function getScores(word){
 
 	var data;
