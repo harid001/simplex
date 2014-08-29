@@ -1,6 +1,6 @@
 # Simplex
 #### the simple messenger
-"Winner" of the $40 Usage Of API Award. Woohoo
+"Winner" of the $40 Usage Of API Award. Woohoo. YEAH!
 
 ##### Collaborators
 * Rahul Bhatt
