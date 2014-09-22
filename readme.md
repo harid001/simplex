@@ -7,7 +7,7 @@
 * Sujay Patwardhan
 * Surya Ruddaraju
 * Aakash Adesara
-* Hari Dhanushkodi
+* Hari Dhanushkodi ()()()()
 
 ###### Angel Hack SV 2014 Summer
 Bridging the communication barrier!
