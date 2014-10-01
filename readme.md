@@ -1,5 +1,5 @@
 # Simplex
-#### the simple messenger
+#### The Simplex Messenger
 "Winner" of the $40 Usage Of API Award. Woohoo. YEAH!
 
 ##### Collaborators
